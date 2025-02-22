@@ -4,7 +4,7 @@ import boinsoft.example01.*;
 import org.osgi.service.component.annotations.*;
 
 @Component(
-    property = {"osgi.command.scope=provision", "osgi.command.function=start"},
+    property = {"osgi.command.scope=provision", "osgi.command.function=provision"},
     immediate = true,
     service = Object.class)
 public class ProvisionCommand {

@@ -56,7 +56,9 @@ class HandleImpl implements Handle, Runnable {
     return this;
   }
 
-  public Object get() throws Exception {
+  // NOTE: if you call this 'get', something calls it, maybe from gogo
+  // and auto-waits for future complete
+  public Object waitFut() throws Exception {
     return fut_.get();
   }
 

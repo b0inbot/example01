@@ -1,0 +1,25 @@
+$ bazel build @atosgi//launcher:launcher_release
+$ bazel build example01/...
+$ find bazel-bin/ -iname example01\*jar
+bazel-bin/example01/example01.api.jar
+bazel-bin/example01/example01.command.jar
+bazel-bin/example01/example01.dummy.jar
+$ find bazel-bin/ -iname launcher-release.jar
+bazel-bin/external/atosgi+/launcher/launcher-release.jar
+$ java -jar bazel-bin/external/atosgi+/launcher/launcher-release.jar
+[INFO] atosgi-launcher
+[INFO] == CWD: ...
+[INFO] == Cache: ...
+[INFO] == Interactive: true
+____________________________
+Welcome to Apache Felix Gogo
+
+g! install bazel-bin/example01/example01.api.jar bazel-bin/example01/example01.command.jar bazel-bin/example01/example01.dummy.jar
+Bundle IDs: 15, 16, 17
+g! start 15 16 17
+g! a = (provision:start)
+...
+g! provision:status $a
+RUNNING
+g! provision:status $a
+FINISHED
