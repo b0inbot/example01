@@ -1,0 +1,3 @@
+- TODO: a way to launch the bundle group for local testing
+- TODO: baselining
+- TODO: bundle relationships should be autodetected (see notes/imports.md)

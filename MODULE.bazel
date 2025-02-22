@@ -1,0 +1,60 @@
+module(
+    name = "boinsoft_example01",
+    version = "0.1.0",
+)
+
+#
+# common
+#
+http_jar = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_jar")
+
+#
+# build tooling
+#
+bazel_dep(name = "boinsoft_tools", version = "0.1.0")
+git_override(
+    module_name = "boinsoft_tools",
+    commit = "fb3e4a61693345ca3c1749af4568eae72db9d879",
+    remote = "https://github.com/b0inbot/tools.git",
+)
+
+bazel_dep(name = "rules_pkg", version = "1.0.1")
+
+#
+# Java and OSGI
+#
+bazel_dep(name = "rules_java", version = "8.6.1")
+bazel_dep(name = "atosgi", version = "0.1.0")
+git_override(
+    module_name = "atosgi",
+    commit = "9aa4a618ed20f2a42600ff7e6adb7954488c8c92",
+    remote = "https://github.com/b0inbot/atosgi.git",
+)
+
+bazel_dep(name = "rules_jvm_external", version = "6.4")
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    name = "boinsoft_example01_maven",
+    artifacts = [
+    ],
+    strict_visibility = True,
+)
+use_repo(maven, "boinsoft_example01_maven")
+
+#
+# format and linting
+#
+bazel_dep(
+    name = "buildifier_prebuilt",
+    version = "8.0.1",
+    dev_dependency = True,
+)
+
+bazel_dep(name = "aspect_rules_lint", version = "1.0.3")
+
+http_jar(
+    name = "google-java-format",
+    sha256 = "33068bbbdce1099982ec1171f5e202898eb35f2919cf486141e439fc6e3a4203",
+    url = "https://github.com/google/google-java-format/releases/download/v1.17.0/google-java-format-1.17.0-all-deps.jar",
+)
