@@ -27,7 +27,7 @@ bazel_dep(name = "rules_java", version = "9.5.0")
 bazel_dep(name = "atosgi", version = "0.2.0")
 git_override(
     module_name = "atosgi",
-    commit = "e7b3ff90b31e96d7079034cbdab3345ce4356a76",
+    commit = "21a61eee09bcaaf23bcc6a917a5a314e56f3768d",
     remote = "https://github.com/b0inbot/atosgi.git",
 )
 
@@ -37,10 +37,16 @@ maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     name = "boinsoft_example01_maven",
     artifacts = [
+        "org.jetbrains.kotlin:kotlin-osgi-bundle:2.3.10",
     ],
     strict_visibility = True,
 )
 use_repo(maven, "boinsoft_example01_maven")
+
+#
+# Other JVM languages
+#
+bazel_dep(name = "rules_kotlin", version = "2.3.0")
 
 #
 # format and linting
