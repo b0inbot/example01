@@ -1,3 +1,4 @@
+load("@rules_java//java:java_library.bzl", "java_library")
 load("@atosgi//:defs.bzl", "atosgi_artifact", "bnd", "bundles")
 
 package(
