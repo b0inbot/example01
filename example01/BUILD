@@ -1,4 +1,4 @@
-load("@atosgi//:defs.bzl", "atosgi_artifact", "bnd", "bundles")
+load("@atosgi//:defs.bzl", "atosgi_artifact", "bnd", "bundles", "bundles_test")
 load("@rules_java//java:java_library.bzl", "java_library")
 
 package(
@@ -78,5 +78,13 @@ bundles(
         ":example01.api",
         ":example01.dummy",
         ":example01.command",
+    ],
+)
+
+bundles_test(
+    name = "test",
+    src = ":example01_bundles",
+    expected = [
+        "example01.command",
     ],
 )

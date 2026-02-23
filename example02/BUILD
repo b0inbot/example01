@@ -1,4 +1,4 @@
-load("@atosgi//:defs.bzl", "atosgi_artifact", "bnd", "bundles")
+load("@atosgi//:defs.bzl", "atosgi_artifact", "bnd", "bundles", "bundles_test")
 load("@rules_java//java:java_library.bzl", "java_library")
 load("@rules_jvm_external//:defs.bzl", "artifact")
 load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_library")
@@ -84,5 +84,13 @@ bundles(
             "org.jetbrains.kotlin:kotlin-osgi-bundle:2.3.10",
             repository_name = "boinsoft_example01_maven",
         ),
+    ],
+)
+
+bundles_test(
+    name = "test",
+    src = ":example02_bundles",
+    expected = [
+        "example02.command",
     ],
 )
